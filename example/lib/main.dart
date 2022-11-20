@@ -8,7 +8,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,24 +15,26 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DemoPage(),
+      home: const DemoPage(),
     );
   }
 }
 
 class DemoPage extends StatefulWidget {
+  const DemoPage({super.key});
+
   @override
-  _DemoPageState createState() => _DemoPageState();
+  DemoPageState createState() => DemoPageState();
 }
 
-class _DemoPageState extends State<DemoPage> {
+class DemoPageState extends State<DemoPage> {
   @override
   void initState() {
     super.initState();
-    ShakeDetector detector = ShakeDetector.autoStart(
+    ShakeDetector.autoStart(
       onPhoneShake: () {
         ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Shake!')));
+            .showSnackBar(const SnackBar(content: Text('Shake!')));
         // Do stuff on phone shake
       },
       minimumShakeCount: 1,
@@ -41,13 +42,10 @@ class _DemoPageState extends State<DemoPage> {
       shakeCountResetTime: 3000,
       shakeThresholdGravity: 2.7,
     );
-
-    // To close: detector.stopListening();
-    // ShakeDetector.waitForStart() waits for user to call detector.startListening();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }
